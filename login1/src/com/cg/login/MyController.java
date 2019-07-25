@@ -12,6 +12,7 @@ public class MyController {
 	@Autowired
 	Login login;
 	
+	
 	@RequestMapping(value="/showForm", method=RequestMethod.GET)
 	public String loginPage(Model model){
 		model.addAttribute("login",login);
@@ -20,16 +21,20 @@ public class MyController {
 	}
 	
 	@RequestMapping(value="/checkLogin", method=RequestMethod.POST)
-	public String CheckLogin(Login login){
+	public String CheckLoginPage(Login login, Model model){
+		model.addAttribute("register",new Register());
 		
-		if(login.getUserName().equals("admin"))
-		{
-			return "success";
+		return "register";
 		}
-		else{
-			return "login";
+
+		@RequestMapping(value="/register", method=RequestMethod.POST)
+		public String registerPage(Register register, Model model){
 			
-		}
+			model.addAttribute("register",register);
+			return "success";
+			
+			
+			
 	
 		
 	}
